@@ -1,5 +1,7 @@
 package aplicativos;
 
+import static aplicativos.Modelo.Piloto.setCpf;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -35,15 +37,14 @@ public class AppPilotos {
                     voltarMenu(in);
                     continue;
                 }
-                Scanner ler;
+                Scanner ler = new Scanner(System.in);
                 ler.nextLine();
             
                 System.out.println("Informe o nome do piloto : ");
                 Piloto.setNome(ler.nextLine());
         
                 System.out.println("Informe o cpf do piloto : ");
-                Object cpf;
-				Piloto.setCpf(ler.nextLine(), EXTRACTED);
+                setCpf(ler.nextLine());
             
 
                 System.out.println("Informe a habilitacao do piloto : ");
@@ -69,9 +70,18 @@ public class AppPilotos {
 
                 voltarMenu(in);
             } else if (opcao == 3) {
+               
+                System.out.println("Informe o cpf do piloto desejado: " );
+                System.out.println("O piloto encontrado de acordo com o cpf foi " + Piloto.getNome());
+                System.out.println("\nNão há pilotos com o cpf digitado para exibir.");
+            }
+             else if (opcao == 4) {
 
-            } else if (opcao == 4) {
-                
+                System.out.println("Digite o novo tamhanho do armazenamento: ");
+                Object vetorTamanho;
+                if(vetorTamanho != null){
+                for(int i = 0; i < vetorTamanho.length; i++){
+                System.out.println(" O tamanho do novo vetor é " + vetorTamanho[i].getVetorTamnho());
             }
             else if (opcao != 0) {
                 System.out.println("\nOpção inválida!");
@@ -81,6 +91,14 @@ public class AppPilotos {
         System.out.println("Fim do programa!");
 
         in.close();
+    }
+
+    private static void extracted3(Scanner ler) {
+        extracted2(ler);
+    }
+
+    private static void extracted2(Scanner ler) {
+        Piloto.setCpf(ler.nextLine(), EXTRACTED);
     }
 
     private static Object extracted(Object cpf) {

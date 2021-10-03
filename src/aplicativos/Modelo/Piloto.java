@@ -14,4 +14,6 @@ public class Piloto extends Pessoa{
     }
     public static void setCpf(String nextLine, Object extracted) {
     }
+    public static void setCpf(String nextLine) {
+    }
 }
