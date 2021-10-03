@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import aplicativos.Modelo.Pessoa;
+import aplicativos.Modelo.Piloto;
 
 public class AppPilotos {
+    private static Object cpf;
+    private static final Object EXTRACTED = extracted(cpf);
+
     public static void main(String[] args) throws InterruptedException, IOException {
         final int MAX_ELEMENTOS = 20;
         int opcao, qtdCadastrados = 0;
-        Pessoa[] pilotos = new Pessoa[MAX_ELEMENTOS];
+        Pessoa[] Pilotos = new Pessoa[MAX_ELEMENTOS];
         Scanner in = new Scanner(System.in);
 
         do {
@@ -31,20 +35,37 @@ public class AppPilotos {
                     voltarMenu(in);
                     continue;
                 }
+                Scanner ler;
+                ler.nextLine();
+            
+                System.out.println("Informe o nome do piloto : ");
+                Piloto.setNome(ler.nextLine());
+        
+                System.out.println("Informe o cpf do piloto : ");
+                Object cpf;
+				Piloto.setCpf(ler.nextLine(), EXTRACTED);
+            
 
-                //Cadastre seu piloto aqui
+                System.out.println("Informe a habilitacao do piloto : ");
+                Piloto.getHabilitacao(ler.nextLine());
 
+                System.out.println("Informe a matricula do piloto : ");
+                Piloto.setMatricula(ler.nextInt());
+               
                 System.out.println("\nPiloto cadastrado com sucesso.");
                 voltarMenu(in);
             } else if (opcao == 2) {
                 // Se não tem ninguém cadastrado no vetor, caio fora
                 if (qtdCadastrados == 0) {
-                    System.out.println("\nNão há motoristas cadastrados para exibir.");
+                    System.out.println("\nNão há pilotos cadastrados para exibir.");
                     voltarMenu(in);
                     continue;
                 }
 
-                // Exiba os pilotos aqui
+                System.out.println("O nome do piloto é " + Piloto.getNome());
+                System.out.println("O cpf do piloto é " + Piloto.getCpf());
+                System.out.println("A matricula do piloto é " + Piloto.getMatricula());
+                System.out.println("A habilitação do piloto é " + Piloto.getHabilitacao(null));
 
                 voltarMenu(in);
             } else if (opcao == 3) {
@@ -62,6 +83,10 @@ public class AppPilotos {
         in.close();
     }
 
+    private static Object extracted(Object cpf) {
+        return cpf;
+    }
+
     private static void voltarMenu(Scanner in) throws InterruptedException, IOException {
         System.out.println("\nPressione ENTER para voltar ao menu.");
         in.nextLine();
@@ -74,4 +99,6 @@ public class AppPilotos {
         
         System.out.flush();
     }
+
+    public static void setCpf(String cpf);
 }
